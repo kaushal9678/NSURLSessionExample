@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "Questions.h"
 static NSString const *kAppId = @"YOUR_APP_KEY";
 static NSString const *kRestApiKey = @"YOUR_REST_API_KEY";
 @interface ViewController ()
@@ -42,12 +43,16 @@ static NSString const *kRestApiKey = @"YOUR_REST_API_KEY";
     
     
     [_queue addOperation:[[KYURLSessionOperations alloc]initWithSession:_session request:request1 completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data
+        NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                                  options:NSJSONReadingAllowFragments error:&error];
         
-        NSLog(@"response of data navigation =%@",jsonDict);
+        NSLog(@"response of data navigation =%@",jsonArray);
         
         // handle response here for first API
+        
+        for (NSDictionary *dict in jsonArray) {
+            
+        }
         
     }]];
     
@@ -56,13 +61,20 @@ static NSString const *kRestApiKey = @"YOUR_REST_API_KEY";
     
 
     [_queue addOperation:[[KYURLSessionOperations alloc]initWithSession:_session request:request2 completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data
+        NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data
                                                                  options:NSJSONReadingAllowFragments error:&error];
         
-        NSLog(@"response of data navigation =%@",jsonDict);
+        NSLog(@"response of data navigation =%@",jsonArray);
        
         //handle response here for second API
-        
+        for (NSDictionary *dict in jsonArray) {
+          
+            NSMutableData *data=[[NSMutableData alloc]init];
+            NSKeyedArchiver *archive=[[NSKeyedArchiver alloc]initForWritingWithMutableData:data];
+            [archive encodeObject:dict forKey:@"questions"];
+            [archive finishEncoding];
+            
+        }
     }]];
     
  

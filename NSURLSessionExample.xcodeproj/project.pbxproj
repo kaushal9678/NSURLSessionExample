@@ -20,6 +20,7 @@
 		7DE00EF71B209D0000C8D562 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DE00EF61B209D0000C8D562 /* UIKit.framework */; };
 		7DE00EF81B209D0800C8D562 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DE00EF61B209D0000C8D562 /* UIKit.framework */; };
 		7DE00EFA1B20B51200C8D562 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE00EF91B20B51200C8D562 /* Test.m */; };
+		7DE00EFD1B20B97400C8D562 /* Questions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DE00EFC1B20B97400C8D562 /* Questions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		7DE00EF41B209A6B00C8D562 /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
 		7DE00EF61B209D0000C8D562 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7DE00EF91B20B51200C8D562 /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
+		7DE00EFB1B20B97400C8D562 /* Questions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Questions.h; path = Model/Questions/Questions.h; sourceTree = "<group>"; };
+		7DE00EFC1B20B97400C8D562 /* Questions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Questions.m; path = Model/Questions/Questions.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +105,7 @@
 				7DE00ECA1B20952200C8D562 /* AppDelegate.m */,
 				7DE00ECC1B20952200C8D562 /* ViewController.h */,
 				7DE00ECD1B20952200C8D562 /* ViewController.m */,
+				7DE00EFE1B20B97800C8D562 /* Model */,
 				7DE00ECF1B20952200C8D562 /* Main.storyboard */,
 				7DE00ED21B20952200C8D562 /* Images.xcassets */,
 				7DE00ED41B20952200C8D562 /* LaunchScreen.xib */,
@@ -152,6 +156,23 @@
 				7DE00EF91B20B51200C8D562 /* Test.m */,
 			);
 			path = Test;
+			sourceTree = "<group>";
+		};
+		7DE00EFE1B20B97800C8D562 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7DE00EFF1B20B98000C8D562 /* Questions */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		7DE00EFF1B20B98000C8D562 /* Questions */ = {
+			isa = PBXGroup;
+			children = (
+				7DE00EFB1B20B97400C8D562 /* Questions.h */,
+				7DE00EFC1B20B97400C8D562 /* Questions.m */,
+			);
+			name = Questions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,6 +277,7 @@
 			files = (
 				7DE00ECE1B20952200C8D562 /* ViewController.m in Sources */,
 				7DE00ECB1B20952200C8D562 /* AppDelegate.m in Sources */,
+				7DE00EFD1B20B97400C8D562 /* Questions.m in Sources */,
 				7DE00EF01B20968900C8D562 /* KYURLSessionOperations.m in Sources */,
 				7DE00EC81B20952200C8D562 /* main.m in Sources */,
 			);
@@ -454,6 +476,7 @@
 				7DE00EE71B20952200C8D562 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7DE00EE81B20952200C8D562 /* Build configuration list for PBXNativeTarget "NSURLSessionExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -462,6 +485,7 @@
 				7DE00EEA1B20952200C8D562 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

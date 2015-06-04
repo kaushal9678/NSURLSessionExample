@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "KYURLSessionOperations.h"
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<NSCoding>
 
 @property(nonatomic,strong)NSOperationQueue *queue;
 @property(nonatomic,strong)NSURLSession *session;

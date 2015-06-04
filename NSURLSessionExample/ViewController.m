@@ -7,7 +7,8 @@
 //
 
 #import "ViewController.h"
-
+static NSString const *kAppId = @"YOUR_APP_KEY";
+static NSString const *kRestApiKey = @"YOUR_REST_API_KEY";
 @interface ViewController ()
 
 @end
@@ -17,6 +18,61 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    _queue=[[NSOperationQueue alloc]init];
+    _queue.maxConcurrentOperationCount=1;
+    
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+   
+    // in case custom header require
+    // Parse requires HTTP headers for authentication. Set them before creating your NSURLSession
+   
+    /* [config setHTTPAdditionalHeaders:@{@"X-Parse-Application-Id":kAppId,
+                                       @"X-Parse-REST-API-Key":kRestApiKey,
+                                       @"Content-Type": @"application/json"}];*/
+    
+    
+    _session=[NSURLSession sessionWithConfiguration:config];
+    
+  NSArray *urls=  @[[NSURL URLWithString:@"http://api.healthians.com/home/navigation" ],[NSURL URLWithString:@"http://api.healthians.com/hplus/gethqquestion"]];
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+
+    NSMutableURLRequest *request1 = [[NSMutableURLRequest alloc] initWithURL:urls[0]];
+    request1.HTTPMethod = @"POST";
+    
+    [_queue addOperation:[[KYURLSessionOperations alloc]initWithSession:_session request:request1 completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data
+                                                                 options:NSJSONReadingAllowFragments error:&error];
+        
+        NSLog(@"response of data navigation =%@",jsonDict);
+        NSLog(@"response of navigations =%@",response);
+        NSDate *date=[NSDate date];
+        
+        NSLog(@"call after %@",date);
+
+    }]];
+    
+    NSMutableURLRequest *request2 = [[NSMutableURLRequest alloc] initWithURL:urls[1]];
+    request2.HTTPMethod = @"POST";
+    
+
+    [_queue addOperation:[[KYURLSessionOperations alloc]initWithSession:_session request:request2 completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data
+                                                                 options:NSJSONReadingAllowFragments error:&error];
+        
+        NSLog(@"response of data navigation =%@",jsonDict);
+        NSLog(@"response of navigations =%@",response);
+        NSDate *date=[NSDate date];
+        
+        NSLog(@"call after %@",date);
+        
+    }]];
+    
+ 
+    [_queue waitUntilAllOperationsAreFinished];
+    
+    NSLog(@"array URL=%@ ",urls);
+    NSLog(@"result=%@",result);
 }
 
 - (void)didReceiveMemoryWarning {

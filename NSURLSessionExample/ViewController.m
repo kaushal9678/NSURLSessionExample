@@ -35,21 +35,20 @@ static NSString const *kRestApiKey = @"YOUR_REST_API_KEY";
     _session=[NSURLSession sessionWithConfiguration:config];
     
   NSArray *urls=  @[[NSURL URLWithString:@"http://api.healthians.com/home/navigation" ],[NSURL URLWithString:@"http://api.healthians.com/hplus/gethqquestion"]];
-    NSMutableArray *result = [[NSMutableArray alloc] init];
-
+  
+    // create request of post type
     NSMutableURLRequest *request1 = [[NSMutableURLRequest alloc] initWithURL:urls[0]];
     request1.HTTPMethod = @"POST";
+    
     
     [_queue addOperation:[[KYURLSessionOperations alloc]initWithSession:_session request:request1 completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data
                                                                  options:NSJSONReadingAllowFragments error:&error];
         
         NSLog(@"response of data navigation =%@",jsonDict);
-        NSLog(@"response of navigations =%@",response);
-        NSDate *date=[NSDate date];
         
-        NSLog(@"call after %@",date);
-
+        // handle response here for first API
+        
     }]];
     
     NSMutableURLRequest *request2 = [[NSMutableURLRequest alloc] initWithURL:urls[1]];
@@ -61,10 +60,8 @@ static NSString const *kRestApiKey = @"YOUR_REST_API_KEY";
                                                                  options:NSJSONReadingAllowFragments error:&error];
         
         NSLog(@"response of data navigation =%@",jsonDict);
-        NSLog(@"response of navigations =%@",response);
-        NSDate *date=[NSDate date];
-        
-        NSLog(@"call after %@",date);
+       
+        //handle response here for second API
         
     }]];
     
@@ -72,8 +69,7 @@ static NSString const *kRestApiKey = @"YOUR_REST_API_KEY";
     [_queue waitUntilAllOperationsAreFinished];
     
     NSLog(@"array URL=%@ ",urls);
-    NSLog(@"result=%@",result);
-}
+  }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
